@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  home:
+    ports:
+      - '8888:8888'
+      - '4040:4040'
+    volumes:
+      - '%UserProfile%\.aws:/root/.aws:rw'
+    container_name: glue_jupyter
+    image: /home/jupyter/jupyter_start.sh
