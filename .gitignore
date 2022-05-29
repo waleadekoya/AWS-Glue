@@ -1,2 +1,3 @@
 .idea
 *.iml
+/aws-dev-env/
