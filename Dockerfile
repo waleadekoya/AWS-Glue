@@ -5,7 +5,8 @@ ARG USER_UID
 ARG USER_GID
 
 ## Create non-root user
-RUN groupadd -gid $USER_GID $USERNAME && useradd -uid $USER_UID -gid $USER_GID -m $USERNAME
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 ## Add sudo support in case we need to install software after connecting
 ## Jessie is not the latest stable Debian release – jessie-backports is not available
