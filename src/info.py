@@ -56,9 +56,9 @@ def translate(col):
     return GoogleTranslator(source="auto", target="en").translate(col)
 
 
-ud_translate = udf(lambda x: translate(x), StringType())
+udf_translate = udf(lambda x: translate(x), StringType())
 
-sparkDF = inputDF.toDF().withColumn("roleTranslated", ud_translate("rolw"))
+sparkDF = inputDF.toDF().withColumn("roleTranslated", udf_translate("role"))
 sparkDF.show()
 
 # sc = SparkContext()
