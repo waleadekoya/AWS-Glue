@@ -1,15 +1,13 @@
 import sys
 
+from awsglue.context import GlueContext
+from awsglue.dynamicframe import DynamicFrame
+from awsglue.job import Job
+from awsglue.utils import getResolvedOptions
+from deep_translator import GoogleTranslator
 from pyspark import SparkContext
 from pyspark.sql.functions import udf, lit
 from pyspark.sql.types import StringType
-from deep_translator import GoogleTranslator
-
-from awsglue.transforms import *
-from awsglue.utils import getResolvedOptions
-from awsglue.job import Job
-from awsglue.context import GlueContext
-from awsglue.dynamicframe import DynamicFrame
 
 # https://aws.amazon.com/blogs/big-data/building-python-modules-from-a-wheel-for-spark-etl-workloads-using-aws-glue-2-0/
 # https://aws.amazon.com/premiumsupport/knowledge-center/glue-version2-external-python-libraries/
@@ -66,24 +64,3 @@ dataset = glueContext.write_dynamic_frame.from_options(frame=dy_df, connection_t
 # =####################### Custom Code Ends Here ####################################=
 
 job.commit()
-
-"""
-# BoilerPlate Pyspark Code
-============================
-import sys
-from awsglue.transforms import *
-from awsglue.utils import getResolvedOptions
-from pyspark.context import SparkContext
-from awsglue.context import GlueContext
-from awsglue.job import Job
-
-## @params: [JOB_NAME]
-args = getResolvedOptions(sys.argv, ['JOB_NAME'])
-
-sc = SparkContext()
-glueContext = GlueContext(sc)
-spark = glueContext.spark_session
-job = Job(glueContext)
-job.init(args['JOB_NAME'], args)
-job.commit()
-"""
