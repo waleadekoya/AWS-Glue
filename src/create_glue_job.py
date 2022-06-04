@@ -5,10 +5,10 @@ import awswrangler as wr
 from pathlib import Path
 
 etl_script = Path(Path(__file__).parent, "glue_job_etl_script.py")
-s3_location = f"s3://aws-glue-data-source-az/scripts/{etl_script.name}"
+s3_script_location = f"s3://aws-glue-data-source-az/scripts/{etl_script.name}"
 
 # Upload Python Script to S3
-wr.s3.upload(str(etl_script), path=s3_location)
+wr.s3.upload(str(etl_script), path=s3_script_location)
 
 # https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html
 
@@ -66,7 +66,7 @@ myJob = glue.create_job(
     Role="AWSGlueServiceRole-Developer",
     Command={
         "Name": "glueetl",
-        "ScriptLocation": s3_location,
+        "ScriptLocation": s3_script_location,
         "PythonVersion": "3"
     },
     DefaultArguments={

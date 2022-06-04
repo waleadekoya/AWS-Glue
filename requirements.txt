@@ -4,3 +4,6 @@ awsglue3-local
 boto3~=1.23.4
 awswrangler~=2.15.1
 pandas~=1.4.2
+apache-airflow[amazon]
+requests
+pendulum~=2.1.2

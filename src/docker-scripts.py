@@ -4,6 +4,7 @@ from pathlib import Path
 
 
 # https://aws.amazon.com/blogs/big-data/develop-and-test-aws-glue-version-3-0-jobs-locally-using-a-docker-container/
+from src.utils import get_remote_file
 
 
 class AWSGlueLocalDev:
@@ -26,7 +27,10 @@ class AWSGlueLocalDev:
 
     def __init__(self):
         self.__container_name = "glue_jupyter"
-        self.get_remote_file("https://s3-us-west-2.amazonaws.com/crawler-public/json/serde/json-serde.jar")
+        get_remote_file(
+            "https://s3-us-west-2.amazonaws.com/crawler-public/json/serde/json-serde.jar",
+            self.local_notebook_dir,
+        )
         self.create_notebook_dir()
         subprocess.run(
             f"{self.pull_docker_image()} "

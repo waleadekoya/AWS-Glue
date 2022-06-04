@@ -1,0 +1,40 @@
+To run Airflow on Kubernetes you need 5 tools:
+# https://github.com/marclamberti/webinar-airflow-chart
+    1. Docker
+    2. Docker Compose
+    3. KinD # https://kind.sigs.k8s.io/docs/user/quick-start/
+    4. Helm,
+    5. Kubectl
+
+
+# How to install KinD on Windows
+ a) install chocolatey : https://chocolatey.org/install
+ b) then run: "choco install kind"
+
+# How to install Helm on Windows - https://community.chocolatey.org/packages?q=helm
+  command: "choco install kubernetes-helm"
+
+# Steps to install kubectl on Windows: # https://kubernetes.io/docs/tasks/tools/
+  https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+  Run the following commands from PowerShell:
+ a) choco install kubernetes-cli
+ b) cd %USERPROFILE%
+ c) cd .kube
+ d) check installation version with: "kubectl version --client --output=yaml"
+ e) configure kubectl to use a remote Kubernetes cluster: "New-Item config -type file"
+
+After installation is complete:
+
+1. Copy the contents of "kind-cluster.yaml" into the project root directory
+2. Execute the following command to create your Kubernetes cluster (be sure you are in this directory):
+    "kind create cluster --name airflow-cluster --config kind-cluster.yaml"
+    Check installation with: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+        "kubectl cluster-info"
+        "kubectl get nodes -o wide"
+    Check services running a port: "netstat -a -o -n | find "<port>"
+
+3. run: "kubectl create namespace airflow"
+4. Bootstrap airflow deployment on Kubernetes cluster using the Helm package manager:
+   # https://airflow.apache.org/docs/helm-chart/stable/index.html
+   a) helm install airflow apache-airflow/airflow --namespace airflow --debug
+   b) kubectl get pods -n airflow
