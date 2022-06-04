@@ -33,6 +33,8 @@ response = glue.create_database(
 pprint(response)
 
 # Create Crawler
+delete_response = glue.delete_crawler(Name="stocks_database_crawler")
+pprint(delete_response)
 crawler = glue.create_crawler(
     # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/glue.html#Glue.Client.create_crawler
     Name="stocks_database_crawler",
@@ -83,6 +85,7 @@ myJob = glue.create_job(
 
 )
 pprint(myJob)
+pprint(myJob['Name'])
 # https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-libraries.html
 # https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api.html
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/glue.html

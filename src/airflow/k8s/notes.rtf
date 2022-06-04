@@ -1,9 +1,10 @@
 To run Airflow on Kubernetes you need 5 tools:
+# https://marclamberti.com/blog/airflow-on-kubernetes-get-started-in-10-mins/
 # https://github.com/marclamberti/webinar-airflow-chart
     1. Docker
     2. Docker Compose
     3. KinD # https://kind.sigs.k8s.io/docs/user/quick-start/
-    4. Helm,
+    4. Helm
     5. Kubectl
 
 
@@ -36,5 +37,9 @@ After installation is complete:
 3. run: "kubectl create namespace airflow"
 4. Bootstrap airflow deployment on Kubernetes cluster using the Helm package manager:
    # https://airflow.apache.org/docs/helm-chart/stable/index.html
+   # https://airflow.apache.org/docs/helm-chart/stable/index.html
    a) helm install airflow apache-airflow/airflow --namespace airflow --debug
-   b) kubectl get pods -n airflow
+   b) kubectl get pods -n airflow  [kubectl get pods --all-namespaces]
+
+# https://github.com/empathyco/platform-localhost-emulation
+# To delete kubernetes cluster run: "kind delete cluster --name <cluster-name>"
