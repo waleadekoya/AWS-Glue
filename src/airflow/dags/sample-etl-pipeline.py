@@ -105,7 +105,7 @@ def __start_crawler(crawler_name: str, *, timeout_minutes: int = 120, retry_seco
     start_time = timeit.default_timer()
     abort_time = start_time + timeout_seconds
 
-    def wait_until_ready() -> None:
+    def wait_until_ready() -> None: # https://stackoverflow.com/a/53002714
         response_get = None
         state_previous = None
         while True:
