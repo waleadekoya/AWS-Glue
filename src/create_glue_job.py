@@ -4,7 +4,7 @@ import boto3
 import awswrangler as wr
 from pathlib import Path
 
-etl_script = Path(Path(__file__).parent, "glue_job_etl_script.py")
+etl_script = Path(Path(__file__).parent, "airflow/scripts/glue_job_etl_script.py")
 s3_script_location = f"s3://aws-glue-data-source-az/scripts/{etl_script.name}"
 
 # Upload Python Script to S3

@@ -43,3 +43,23 @@ After installation is complete:
 
 # https://github.com/empathyco/platform-localhost-emulation
 # To delete kubernetes cluster run: "kind delete cluster --name <cluster-name>"
+
+# Set up Airflow on WSL for Windows
+    #. Download WSL for windows - with admin access from cmd: wsl.exe --install [https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10]
+    #. export AIRFLOW_HOME=~/airflow [/mnt/c/Users/User/Documents/
+    #. Install python3.7 using the instructions here: https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
+    #. sudo apt-get install python3-pip
+    #. Set up virtual env: [https://linoxide.com/how-to-create-python-virtual-environment-on-ubuntu-20-04/]
+            # sudo apt-get install python3-venv
+            # python3 -m venv /mnt/c/Users/User/Documents/AWS-Glue/airflow_venv
+            # source /mnt/c/Users/User/Documents/AWS-Glue/airflow_venv/bin/activate
+            # pip install [package-name]
+    #. Set up aiflow locally using this link: [https://airflow.apache.org/docs/apache-airflow/stable/start/local.html]
+    # pip install pandas awswrangler requests pendulum awsglue3-local pyspark boto3 awscli
+    #. pip3 install [package-name]
+      If you get this:  WARNING: The script airflow is installed in '/home/<user_name>/.local/bin' which is not on PATH.
+      DO THIS:  export PATH="$PATH:/home/<user_name>/.local/bin"
+    #. pip3 install --upgrade awscli
+    #. export AWS_SHARED_CREDENTIALS_FILE=/mnt/c/Users/<your user name>/.aws/credentials  [https://stackoverflow.com/a/53083079]
+    #. export AWS_CONFIG_FILE=/mnt/c/Users/<your user name>/.aws/config [https://stackoverflow.com/a/53083079]
+    #.

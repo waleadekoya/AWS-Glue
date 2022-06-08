@@ -10,7 +10,7 @@ import botocore.exceptions
 import pendulum
 from airflow.decorators import dag, task
 
-etl_script = Path(Path(__file__).parent, "glue_job_etl_script.py")
+etl_script = Path(Path(__file__).parent.parent, "scripts", "glue_job_etl_script.py")
 s3_script_location = f"s3://aws-glue-data-source-az/scripts/{etl_script.name}"
 log = logging.getLogger(__name__)
 

@@ -1,6 +1,5 @@
 # https://stackoverflow.com/a/66248028
 from datetime import datetime, timedelta
-
 from pathlib import Path
 
 from airflow import DAG
@@ -10,10 +9,8 @@ from airflow.providers.amazon.aws.operators.glue import GlueJobOperator
 
 # Local Set Up: https://airflow.apache.org/docs/apache-airflow/stable/start/local.html
 
-from src.utils import get_remote_file
-
 """
-# 1. https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
+# 1. install python3.7 using the instructions here: https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
 # 2. sudo apt-get install python3-pip
 
 export AIRFLOW_HOME=~/airflow
