@@ -49,7 +49,7 @@ spark_df.show()
 # Convert backed to a Dynamic DataFrame
 dy_df = DynamicFrame.fromDF(spark_df, glueContext, "dy_df")
 
-# Result are store back to the S3 bucket
+# Result is re-ingested into S3 bucket
 # https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format.html
 dest_bucket = "s3://aws-glue-data-source-az/data/customers_database/outputs/"
 dataset = glueContext.write_dynamic_frame.from_options(frame=dy_df, connection_type="s3",

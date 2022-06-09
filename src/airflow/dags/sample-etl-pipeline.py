@@ -60,6 +60,7 @@ def create_databases():
                       "s3://aws-glue-data-source-az/data/customers_database/customers_csv/",
                       "customers database metadata"
                       )
+    return True
 
 
 def __create_crawler(crawler_name: str, database: str, s3_targets: str, description: str = "", ):
@@ -85,19 +86,21 @@ def __create_crawler(crawler_name: str, database: str, s3_targets: str, descript
 
 
 @task()
-def create_crawler():
+def create_crawler(status: bool):
     # delete_response = glue.delete_crawler(Name="stocks_database_crawler")
     # pprint(delete_response)
-    __create_crawler(crawler_name="stocks_database_crawler",
-                     database="stocks_database",
-                     s3_targets="s3://aws-glue-data-source-az/data/aws_wrangler_database",
-                     description="a crawler to create metadata for stocks_database tables",
-                     )
-    __create_crawler(crawler_name="customer_csv_crawler",
-                     database="customers_database",
-                     s3_targets="s3://aws-glue-data-source-az/data/customers_database/customers_csv",
-                     description="crawler to get metadata for customer csv data table",
-                     )
+    if status:
+        __create_crawler(crawler_name="stocks_database_crawler",
+                         database="stocks_database",
+                         s3_targets="s3://aws-glue-data-source-az/data/aws_wrangler_database",
+                         description="a crawler to create metadata for stocks_database tables",
+                         )
+        __create_crawler(crawler_name="customer_csv_crawler",
+                         database="customers_database",
+                         s3_targets="s3://aws-glue-data-source-az/data/customers_database/customers_csv",
+                         description="crawler to get metadata for customer csv data table",
+                         )
+        return True
 
 
 def __start_crawler(crawler_name: str, *, timeout_minutes: int = 120, retry_seconds: int = 5):
@@ -105,7 +108,7 @@ def __start_crawler(crawler_name: str, *, timeout_minutes: int = 120, retry_seco
     start_time = timeit.default_timer()
     abort_time = start_time + timeout_seconds
 
-    def wait_until_ready() -> None: # https://stackoverflow.com/a/53002714
+    def wait_until_ready() -> None:  # https://stackoverflow.com/a/53002714
         response_get = None
         state_previous = None
         while True:
@@ -126,26 +129,27 @@ def __start_crawler(crawler_name: str, *, timeout_minutes: int = 120, retry_seco
                         f"Failed to crawl {crawler_name}. The allocated time of {timeout_minutes:,} minutes has elapsed.")
                 time.sleep(retry_seconds)
 
-    if glue.get_crawler(Name=crawler_name):
-        wait_until_ready()
-        response = glue.start_crawler(Name=crawler_name)
-        assert response["ResponseMetadata"]["HTTPStatusCode"] == 200
-        log.info(f"Crawling {crawler_name}.")
-        wait_until_ready()
-        log.info(f"Crawled {crawler_name}.")
-        pprint(response)
+    # if glue.get_crawler(Name=crawler_name):
+    wait_until_ready()
+    response = glue.start_crawler(Name=crawler_name)
+    assert response["ResponseMetadata"]["HTTPStatusCode"] == 200
+    log.info(f"Crawling {crawler_name}.")
+    wait_until_ready()
+    log.info(f"Crawled {crawler_name}.")
+    pprint(response)
 
 
 @task()
-def start_crawler():
-    crawlers = ["stocks_database_crawler", "customer_csv_crawler"]
-    for crawler in crawlers:
-        __start_crawler(crawler)
-    return "completed"
+def start_crawler(status: bool):
+    if status:
+        crawlers = ["stocks_database_crawler", "customer_csv_crawler"]
+        for crawler in crawlers:
+            __start_crawler(crawler)
+        return True
 
 
 @task(multiple_outputs=True)
-def create_job(crawler_status: str):
+def create_job(crawler_status: bool):
     # 2. Create a job. You must use glueetl as the name for the ETL command
     # Delete existing job with the same job name
     pprint(
@@ -200,9 +204,9 @@ def start_job(my_job):
 )
 def glue_taskflow_api_etl():
     upload_script_to_s3()
-    create_databases()
-    create_crawler()
-    status = start_crawler()
+    status = create_databases()
+    status = create_crawler(status)
+    status = start_crawler(status)
     job_name = create_job(status)
     start_job(job_name)
 
