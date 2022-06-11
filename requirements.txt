@@ -7,3 +7,5 @@ requests
 pendulum
 awscli
 apache-airflow[amazon]
+dbt-postgres
+dbt-redshift

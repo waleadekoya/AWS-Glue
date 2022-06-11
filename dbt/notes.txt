@@ -1,0 +1,10 @@
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html#USER_ConnectToPostgreSQLInstance.Troubleshooting
+
+#Getting Started with DBT
+https://docs.getdbt.com/guides/getting-started/learning-more/getting-started-dbt-core
+
+# Customize dbt profile directory
+https://docs.getdbt.com/dbt-cli/configure-your-profile
+
+# Using environment variables
+https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
