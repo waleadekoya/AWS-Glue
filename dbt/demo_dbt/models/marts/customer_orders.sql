@@ -12,6 +12,24 @@ with customers as (
 
      ),
 
+    first_pymt as (
+
+            select
+                   customer_id,
+                   order_date as first_order_date,
+                   payment_amount as first_order_amt
+            from orders
+    ),
+
+    most_recent_pymt as (
+
+            select
+                   customer_id,
+                   order_date as most_recent_order_date,
+                   payment_amount as most_recent_order_amt
+            from orders
+    ),
+
      customer_orders as (
 
          select
@@ -35,11 +53,18 @@ with customers as (
              customers.last_name,
              customer_orders.first_order_date,
              customer_orders.most_recent_order_date,
+             first_pymt.first_order_amt,
+             most_recent_pymt.most_recent_order_amt,
              coalesce(customer_orders.number_of_orders, 0) as number_of_orders
 
          from customers
 
                   left join customer_orders using (customer_id)
+                  left join first_pymt using (customer_id, first_order_date)
+                  left join most_recent_pymt using (customer_id, most_recent_order_date)
+--                   left join pymt on
+--                         pymt.customer_id = customer_orders.customer_id and
+--                         pymt.first_order_date = customer_orders.first_order_date
 
      )
 
