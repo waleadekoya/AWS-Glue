@@ -1,6 +1,10 @@
 https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html#USER_ConnectToPostgreSQLInstance.Troubleshooting
 
+# dbt Models
+https://docs.getdbt.com/docs/building-a-dbt-project/building-models
+
 #Getting Started with DBT
+https://docs.getdbt.com/guides/getting-started/building-your-first-project/build-your-first-models
 https://docs.getdbt.com/guides/getting-started/learning-more/getting-started-dbt-core
 
 # Customize dbt profile directory
@@ -8,3 +12,18 @@ https://docs.getdbt.com/dbt-cli/configure-your-profile
 
 # Using environment variables
 https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
+
+# CLI Profiles
+https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile
+
+
+# RedShift Commands
+https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD_command_examples.html
+https://docs.aws.amazon.com/redshift/latest/dg/tutorial-loading-data.html
+
+# dbt interactions with RedShift
+https://docs.getdbt.com/guides/getting-started/getting-set-up/setting-up-redshift
+
+# Allow cross communication between S3 bucket and Amazon Redshift
+https://stackoverflow.com/a/42940022
+https://aws.amazon.com/premiumsupport/knowledge-center/cannot-connect-redshift-cluster/

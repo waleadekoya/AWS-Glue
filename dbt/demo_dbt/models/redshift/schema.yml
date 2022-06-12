@@ -1,0 +1,16 @@
+
+version: 2
+
+models:
+  - name: redshift__customers
+    description: "jaffle_shop schema"
+    database: dbt_workshop
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: "customers information"
+  - name: redshift__stripe
+    database: dbt_workshop
+    schema: stripe
+    tables:
+      - name: payments
