@@ -35,8 +35,8 @@ models:
   demo_dbt:
     +materialized: table
     # Config indicated by + and applies to all files under models/redshift/
-    redshift:
-      +materialized: table
+#    redshift:
+#      +materialized: table
 
 #seeds:
 #  +schema: jaffle_shop
