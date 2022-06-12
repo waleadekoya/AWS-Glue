@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: redshift__customers
+  - name: customer_orders
     description: One record per customer
     columns:
       - name: customer_id

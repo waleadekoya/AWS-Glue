@@ -62,9 +62,6 @@ with customers as (
                   left join customer_orders using (customer_id)
                   left join first_pymt using (customer_id, first_order_date)
                   left join most_recent_pymt using (customer_id, most_recent_order_date)
---                   left join pymt on
---                         pymt.customer_id = customer_orders.customer_id and
---                         pymt.first_order_date = customer_orders.first_order_date
 
      )
 

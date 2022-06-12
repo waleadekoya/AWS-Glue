@@ -1,8 +1,10 @@
 {{ config(materialized='view') }}
 select
-    id as order_id,
-    user_id as customer_id,
-    order_date,
-    status
+    o.id as order_id,
+    o.user_id as customer_id,
+    o.order_date,
+    o.status,
+    p.payment_amount
 
-from jaffle_shop.orders
+from jaffle_shop.orders o
+         left join {{ ref('stg_payments') }} p on o.id = p.order_id
