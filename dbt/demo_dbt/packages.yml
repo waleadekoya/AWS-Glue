@@ -21,8 +21,6 @@ packages:
   - package: dbt-labs/logging
     version: 0.6.0
 
-  - package: dbt-labs/logging
-    version: 0.6.0
 
 # https://hub.getdbt.com/dbt-labs/
 # https://docs.getdbt.com/docs/building-a-dbt-project/package-management

@@ -41,7 +41,8 @@ with customers as (
 
          from orders
 
-         group by 1
+--          group by 1
+         {{ dbt_utils.group_by(1) }}
 
      ),
 
