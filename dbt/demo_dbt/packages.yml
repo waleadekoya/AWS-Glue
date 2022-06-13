@@ -1,0 +1,29 @@
+
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 0.8.5
+
+  - package: dbt-labs/redshift
+    version: 0.6.1
+
+  - package: dbt-labs/metrics
+    version: 0.1.5
+
+  - package: dbt-labs/spark_utils
+    version: 0.3.0
+
+  - package: dbt-labs/dbt_external_tables
+    version: 0.8.0
+
+  - package: dbt-labs/codegen
+    version: 0.6.0
+
+  - package: dbt-labs/logging
+    version: 0.6.0
+
+  - package: dbt-labs/logging
+    version: 0.6.0
+
+# https://hub.getdbt.com/dbt-labs/
+# https://docs.getdbt.com/docs/building-a-dbt-project/package-management
+# https://hub.getdbt.com/dbt-labs/dbt_utils/latest/
