@@ -27,3 +27,6 @@ https://docs.getdbt.com/guides/getting-started/getting-set-up/setting-up-redshif
 # Allow cross communication between S3 bucket and Amazon Redshift
 https://stackoverflow.com/a/42940022
 https://aws.amazon.com/premiumsupport/knowledge-center/cannot-connect-redshift-cluster/
+
+# Macros & UDFs
+https://discourse.getdbt.com/t/using-dbt-to-manage-user-defined-functions/18/17
